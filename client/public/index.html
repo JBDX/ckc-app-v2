@@ -64,8 +64,8 @@
             // ... (logique de fetch inchangée)
             try {
                 const [teamsResponse, historyResponse] = await Promise.all([
-                    fetch('http://localhost:3000/api/teams'),
-                    fetch('http://localhost:3000/api/teams/history')
+                    fetch('/api/teams'),
+                    fetch('/api/teams/history')
                 ]);
                  if (!teamsResponse.ok || !historyResponse.ok) throw new Error('Erreur serveur.');
                 const teams = await teamsResponse.json();
@@ -83,7 +83,7 @@
             teams.forEach(team => {
                 const teamColor = team.name.replace('s', '');
                 // --- CORRECTION ICI : On utilise une balise <img> ---
-                const logoDisplay = `<img src="http://localhost:3000${team.logo}" alt="Logo ${team.name}">`;
+                const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
 
                 const teamBlock = `
                     <div class="col-6 col-lg-3">

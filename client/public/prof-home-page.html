@@ -117,14 +117,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchAndDisplayTeams() {
         try {
-            const response = await fetch('http://localhost:3000/api/teams');
+            const response = await fetch('/api/teams'); // --- CORRECTION ICI ---
+            if (!response.ok) throw new Error("Erreur serveur.");
             allTeamsData = await response.json();
             teamsGrid.innerHTML = '';
             allTeamsData.forEach(team => {
                 const teamColorClass = `team-block--${team.name.replace('s','')}`;
                 // --- LA CORRECTION EST ICI ---
                 // On utilise une balise <img> pour afficher le logo
-                const logoDisplay = `<img src="http://localhost:3000${team.logo}" alt="Logo ${team.name}">`;
+                const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
                 
                 const teamBlock = document.createElement('div');
                 teamBlock.className = 'col-6 col-lg-3';
@@ -176,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch('http://localhost:3000/api/teams/points', {
+            const response = await fetch('/api/teams/points', { // <- MODIFIÉ
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
