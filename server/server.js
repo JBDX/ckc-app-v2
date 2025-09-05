@@ -21,7 +21,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // --- LIGNE IMPORTANTE ---
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 // Configuration des routes
 app.use('/api/auth', authRoutes);
