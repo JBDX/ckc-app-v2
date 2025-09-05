@@ -21,9 +21,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // --- LIGNE IMPORTANTE ---
-// On dit à Express que le dossier 'public' contient des fichiers accessibles publiquement (nos logos)
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // Configuration des routes
 app.use('/api/auth', authRoutes);
