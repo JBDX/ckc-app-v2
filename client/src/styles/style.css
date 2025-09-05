@@ -1,0 +1,195 @@
+/* =================================================================
+   VARIABLES & STYLES GÉNÉRAUX
+================================================================= */
+:root {
+    --color-background: #FEF6E9;
+    --color-text: #4A3F35;
+    --color-text-muted: #A99A8D;
+    --color-brand-brown-dark: #4A3F35;
+    --color-brand-brown-medium: #8C7862;
+    --color-brand-brown-light: #D1C0AF;
+    --color-input-background: #E6D5C1;
+    --color-team-green: #5CB85C;
+    --color-team-yellow: #F0AD4E;
+    --color-team-blue: #5A58A7;
+    --color-team-red: #D9534F;
+    --border-radius-pill: 50px;
+    --border-radius-card: 1.5rem;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.container {
+    max-width: 960px;
+}
+
+/* =================================================================
+   BOUTONS (STYLE UNIFIÉ)
+================================================================= */
+.btn {
+    border-radius: var(--border-radius-pill);
+    font-weight: 800;
+    padding: 0.7rem 1.5rem;
+    letter-spacing: 1px;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Style principal (marron foncé) */
+.btn-primary {
+    background-color: var(--color-brand-brown-dark);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #332b24; /* Un peu plus foncé */
+    color: white;
+}
+
+/* Style secondaire (marron moyen) */
+.btn-secondary {
+    background-color: var(--color-brand-brown-medium);
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: var(--color-brand-brown-dark);
+    color: white;
+}
+
+/* =================================================================
+   HEADER (pour index.html)
+================================================================= */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.page-header__logo {
+    max-width: 120px;
+}
+
+/* =================================================================
+   FORMULAIRES (pour login.html)
+================================================================= */
+.login-container {
+    max-width: 380px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.login-title {
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    background-color: var(--color-input-background);
+    border: none;
+    border-radius: var(--border-radius-pill);
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: 1px;
+}
+
+.form-control::placeholder {
+    color: var(--color-brand-brown-medium);
+    font-weight: 700;
+}
+
+.form-control:focus {
+    background-color: var(--color-input-background);
+    color: var(--color-text);
+    box-shadow: 0 0 0 3px rgba(74, 63, 53, 0.2);
+}
+
+.back-link {
+    font-weight: 700;
+    color: var(--color-brand-brown-medium);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--color-brand-brown-dark);
+}
+
+/* =================================================================
+   BLOCS ÉQUIPES (pour index.html)
+================================================================= */
+.team-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    border-radius: var(--border-radius-card);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+/* ... (le reste des styles des blocs ne change pas) ... */
+.team-block:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.1);cursor:pointer}.team-block--green{background-color:var(--color-team-green)}.team-block--yellow{background-color:var(--color-team-yellow)}.team-block--blue{background-color:var(--color-team-blue)}.team-block--red{background-color:var(--color-team-red)}.team-block__logo{font-size:3.5rem;opacity:.9}.team-block__logo img{max-height:80px}.team-block__points{background-color:rgba(0,0,0,.2);font-weight:800;padding:.4rem 1.2rem;border-radius:50px;font-size:1rem;letter-spacing:.5px;margin-top:1rem}
+
+/* =================================================================
+   SECTION ACTIVITÉS RÉCENTES (pour index.html)
+================================================================= */
+.section-title{background-color:var(--color-brand-brown-light);color:var(--color-text);font-weight:700;padding:.5rem 1.5rem;border-radius:50px;display:inline-block;margin-bottom:1.5rem}.list-group-item{background-color:transparent;border-bottom:1px solid #EAE0D3}.list-group-item:last-child{border-bottom:none}
+
+
+/* =================================================================
+   BLOCS ÉQUIPES (pour index.html)
+================================================================= */
+.team-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    border-radius: var(--border-radius-card);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.team-block:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+    cursor:pointer
+}
+
+/* --- CORRECTION APPLIQUÉE ICI --- */
+/* On utilise les noms français pour correspondre à la base de données */
+.team-block--vert{background-color:var(--color-team-green)}
+.team-block--jaune{background-color:var(--color-team-yellow)}
+.team-block--bleu{background-color:var(--color-team-blue)}
+.team-block--rouge{background-color:var(--color-team-red)}
+/* ---------------------------------- */
+
+.team-block__logo{
+    font-size:3.5rem;
+    opacity:.9
+}
+.team-block__logo img{
+    max-height:80px
+}
+.team-block__points{
+    background-color:rgba(0,0,0,.2);
+    font-weight:800;
+    padding:.4rem 1.2rem;
+    border-radius:50px;
+    font-size:1rem;
+    letter-spacing:.5px;
+    margin-top:1rem
+}
