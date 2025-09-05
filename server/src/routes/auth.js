@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
         // 4. Créer le jeton de connexion (valide pour 1 heure)
         const token = jwt.sign(
             tokenPayload,
-            'VOTRE_SECRET_JWT_TRES_SECRET', // IMPORTANT: À changer pour une phrase secrète plus complexe !
+            process.env.JWT_SECRET, // IMPORTANT: À changer pour une phrase secrète plus complexe !
             { expiresIn: '1h' }
         );
         

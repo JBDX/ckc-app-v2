@@ -9,7 +9,7 @@ function checkAdmin(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(token, 'VOTRE_SECRET_JWT_TRES_SECRET');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
         if (decoded.isAdmin) {
             // --- LIGNE AJOUTÉE ---
