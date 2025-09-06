@@ -7,7 +7,8 @@
   "start": "node server/server.js",
   "dev": "nodemon server/server.js",
   "db:migrate": "NODE_ENV=production knex migrate:latest --knexfile server/knexfile.js",
-  "db:seed": "NODE_ENV=production knex seed:run --knexfile server/knexfile.js"
+  "db:seed": "NODE_ENV=production knex seed:run --knexfile server/knexfile.js",
+  "debug:env": "node -e \"console.log('DATABASE_URL=' + process.env.DATABASE_URL)\""
     
   },
   "dependencies": {
