@@ -1,4 +1,6 @@
-require('dotenv').config(); // Charge les variables d'environnement du fichier .env
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 module.exports = {
   development: {
