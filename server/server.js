@@ -22,6 +22,8 @@ app.use(express.json());
 
 // --- LIGNE IMPORTANTE ---
 app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Configuration des routes
 app.use('/api/auth', authRoutes);
