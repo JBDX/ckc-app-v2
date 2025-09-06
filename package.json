@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "db:migrate": "knex migrate:latest --knexfile server/knexfile.js",
-    "db:seed": "knex seed:run --knexfile server/knexfile.js"
+    "db:migrate": "NODE_ENV=production knex migrate:latest --knexfile server/knexfile.js",
+    "db:seed": "NODE_ENV=production knex seed:run --knexfile server/knexfile.js"
     
   },
   "dependencies": {
