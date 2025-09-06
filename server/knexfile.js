@@ -4,8 +4,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   development: {
-    client: 'pg', // On spécifie qu'on utilise PostgreSQL
-    connection: process.env.DATABASE_URL, // On utilise l'URL de connexion depuis les variables d'environnement
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './database/migrations'
     },
@@ -13,10 +13,12 @@ module.exports = {
       directory: './database/seeds'
     }
   },
-  // Vous pouvez ajouter des configurations pour la production ici plus tard
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false } // Ligne cruciale pour la connexion sur Railway
+    },
     migrations: {
       directory: './database/migrations'
     },
