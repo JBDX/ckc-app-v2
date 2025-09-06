@@ -1,20 +1,16 @@
-const bcrypt = require('bcryptjs');
-
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
 exports.seed = async function(knex) {
-  // Supprime les données existantes pour éviter de créer des doublons à chaque exécution
+  // Supprime les données existantes
   await knex('profs').del();
 
-  // Hacher les mots de passe avant de les insérer (c'est une étape de sécurité cruciale)
-  const hashedPassword1 = await bcrypt.hash('password123', 10); // Le 10 est le "coût" du hachage, un bon standard.
-  const hashedPassword2 = await bcrypt.hash('azerty456', 10);
-
-  // Insérer les nouveaux professeurs dans la table 'profs'
+  // Insère les professeurs avec les mots de passe en clair et le statut admin
+  // IMPORTANT: Ceci correspond à votre logique de connexion actuelle.
+  // Pour une meilleure sécurité, vous devriez utiliser bcrypt pour vérifier les mots de passe.
   await knex('profs').insert([
-    { username: 'prof.dupont', password: hashedPassword1 },
-    { username: 'prof.durand', password: hashedPassword2 }
+    { username: 'prof.dupont', password: 'password123', is_admin: true },
+    { username: 'prof.durand', password: 'azerty456', is_admin: false }
   ]);
 };
