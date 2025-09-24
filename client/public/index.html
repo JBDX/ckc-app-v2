@@ -81,7 +81,7 @@
         function updateTeamsDisplay(teams) {
             teamsContainer.innerHTML = '';
             teams.forEach(team => {
-                const teamColor = team.name.replace('s', '');
+                const teamColorClass = team.colorClass;
                 // --- CORRECTION ICI : On utilise une balise <img> ---
                 const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
 
