@@ -171,10 +171,10 @@ body {
 
 /* --- CORRECTION APPLIQUÉE ICI --- */
 /* On utilise les noms français pour correspondre à la base de données */
-.team-block--vert{background-color:var(--color-team-green)}
-.team-block--jaune{background-color:var(--color-team-yellow)}
-.team-block--bleu{background-color:var(--color-team-blue)}
-.team-block--rouge{background-color:var(--color-team-red)}
+.team-block--vert  { background-color: #5CB85C; }
+.team-block--jaune { background-color: #F0AD4E; }
+.team-block--bleu  { background-color: #5A58A7; }
+.team-block--rouge { background-color: #D9534F; }
 /* ---------------------------------- */
 
 .team-block__logo{
