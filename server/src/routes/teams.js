@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const client = new Client({ connectionString: process.env.DATABASE_URL });
     try {
         await client.connect();
-        const result = await client.query('SELECT * FROM teams ORDER BY name');
+        const result = await client.query('SELECT *, color_class AS "colorClass" FROM teams ORDER BY name');
         res.status(200).json(result.rows);
     } catch (error) {
         res.status(500).json({ message: "Erreur du serveur." });
