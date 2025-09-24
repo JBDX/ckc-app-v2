@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allTeamsData = await response.json();
             teamsGrid.innerHTML = '';
             allTeamsData.forEach(team => {
-                const teamColorClass = `team-block--${team.name.replace('s','')}`;
+                const teamColorClass = team.color_class;
                 // --- LA CORRECTION EST ICI ---
                 // On utilise une balise <img> pour afficher le logo
                 const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
