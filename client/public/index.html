@@ -45,6 +45,12 @@
                 <p class="text-center text-muted">Chargement des équipes...</p>
             </div>
         </main>
+        <div id="members-container" class="mt-5" style="display:none;">
+            <h3 class="section-title text-center d-inline-block">Membres de l'équipe : <span id="selected-team-name-members" class="text-capitalize"></span></h3>
+            <ul id="members-list" class="list-group mt-3">
+            </ul>
+        </div>
+
         <section>
             <div class="text-center">
                 <h2 class="section-title">ACTIVITÉS RÉCENTES</h2>
@@ -78,24 +84,57 @@
             }
         }
 
-        function updateTeamsDisplay(teams) {
-            teamsContainer.innerHTML = '';
-            teams.forEach(team => {
-                const teamColorClass = team.colorClass;
-                // --- CORRECTION ICI : On utilise une balise <img> ---
-                const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
+        function displayTeamMembers(team) {
+    const membersContainer = document.getElementById('members-container');
+    const teamNameEl = document.getElementById('selected-team-name-members');
+    const membersList = document.getElementById('members-list');
 
-                const teamBlock = `
-                    <div class="col-6 col-lg-3">
-                       <div class="team-block ${team.color_class} h-100">
-                            <div class="team-block__logo">${logoDisplay}</div>
-                            <div class="team-block__name">${team.name}</div>
-                            <div class="team-block__points">${team.score} PTS</div>
-                        </div>
-                    </div>`;
-                teamsContainer.innerHTML += teamBlock;
-            });
+    teamNameEl.textContent = team.name;
+    membersList.innerHTML = ''; // Nettoyer la liste précédente
+
+    if (team.members && team.members.length > 0) {
+        team.members.forEach(member => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.textContent = member;
+            membersList.appendChild(li);
+        });
+        membersContainer.style.display = 'block'; // Afficher le conteneur
+    } else {
+        membersContainer.style.display = 'none'; // Cacher s'il n'y a pas de membres
+    }
+}
+
+function updateTeamsDisplay(teams) {
+    teamsContainer.innerHTML = '';
+    teams.forEach(team => {
+        const teamColorClass = team.colorClass;
+        const logoDisplay = `<img src="${team.logo}" alt="Logo ${team.name}">`;
+
+        const teamBlock = `
+            <div class="col-6 col-lg-3">
+               <div class="team-block ${team.color_class} h-100" data-team-name="${team.name}">
+                    <div class="team-block__logo">${logoDisplay}</div>
+                    <div class="team-block__name">${team.name}</div>
+                    <div class="team-block__points">${team.score} PTS</div>
+                </div>
+            </div>`;
+        teamsContainer.innerHTML += teamBlock;
+    });
+
+    // Ajouter l'écouteur d'événement après avoir généré les blocs d'équipe
+    teamsContainer.addEventListener('click', (e) => {
+        const teamBlock = e.target.closest('.team-block');
+        if (!teamBlock) return;
+        document.querySelectorAll('.team-block').forEach(b => b.classList.remove('selected'));
+        teamBlock.classList.add('selected');
+        const teamName = teamBlock.dataset.teamName;
+        const selectedTeam = teams.find(t => t.name === teamName);
+        if (selectedTeam) {
+            displayTeamMembers(selectedTeam);
         }
+    });
+}
 
         function updateHistoryDisplay(history) {
             // ... (logique de l'historique inchangée)
