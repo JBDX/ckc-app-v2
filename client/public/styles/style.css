@@ -5,14 +5,19 @@
     --color-background: #FEF6E9;
     --color-text: #4A3F35;
     --color-text-muted: #A99A8D;
+    
+    /* Couleurs de marque */
     --color-brand-brown-dark: #4A3F35;
     --color-brand-brown-medium: #8C7862;
     --color-brand-brown-light: #D1C0AF;
     --color-input-background: #E6D5C1;
-    --color-team-green: #5CB85C;
-    --color-team-yellow: #F0AD4E;
-    --color-team-blue: #5A58A7;
-    --color-team-red: #D9534F;
+
+    /* NOUVELLES COULEURS D'ÉQUIPES (Plus vibrantes pour matcher les logos) */
+    --color-team-green: #afe9af;  /* Un vert émeraude */
+    --color-team-yellow: #ffce00; /* Un jaune doré solaire */
+    --color-team-blue: #1c69dd;   /* Un bleu roi électrique */
+    --color-team-red: #ff0000;    /* Un rouge vif */
+
     --border-radius-pill: 50px;
     --border-radius-card: 1.5rem;
 }
@@ -171,18 +176,32 @@ body {
 
 /* --- CORRECTION APPLIQUÉE ICI --- */
 /* On utilise les noms français pour correspondre à la base de données */
-.team-block--vert  { background-color: #5CB85C; }
-.team-block--jaune { background-color: #F0AD4E; }
-.team-block--bleu  { background-color: #5A58A7; }
-.team-block--rouge { background-color: #D9534F; }
+/* On utilise les variables pour que ce soit facile à changer */
+.team-block--vert  { background-color: var(--color-team-green); }
+.team-block--jaune { background-color: var(--color-team-yellow);}
+.team-block--bleu  { background-color: var(--color-team-blue); }
+.team-block--rouge { background-color: var(--color-team-red); }
 /* ---------------------------------- */
 
-.team-block__logo{
-    font-size:3.5rem;
-    opacity:.9
+.team-block__logo {
+    font-size: 3.5rem;
+    opacity: 1; /* Mis à 1 pour qu'ils soient bien brillants */
+    margin-bottom: 1rem; /* Un peu d'espace sous le logo */
 }
-.team-block__logo img{
-    max-height:80px
+
+.team-block__logo img {
+    /* TAILLE : On augmente la taille (avant c'était 80px) */
+    max-height: 130px; 
+    width: auto;
+    
+    /* FORME : On s'assure qu'ils ne sont pas arrondis */
+    border-radius: 0 !important;
+    
+    /* ESTHÉTIQUE : Une petite ombre pour les décoller du fond */
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+    
+    /* SÉCURITÉ : Empêche l'image d'être écrasée */
+    object-fit: contain;
 }
 .team-block__points{
     background-color:rgba(0,0,0,.2);
