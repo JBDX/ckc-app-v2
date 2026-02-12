@@ -1,14 +1,13 @@
-// Fichier: ckc-app-v2/server/server.js
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const path = require('path'); // On importe le module 'path'
+const path = require('path');
 
-// On importe tous nos fichiers de routes et notre gardien
+// Import des routes
 const authRoutes = require('./src/routes/auth');
 const teamRoutes = require('./src/routes/teams');
 const adminRoutes = require('./src/routes/admin');
@@ -17,21 +16,32 @@ const checkAdmin = require('./src/middleware/checkAdmin');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middlewares
+// --- Middlewares ---
 app.use(cors());
-app.use(morgan('dev'));
 app.use(express.json());
 
-// --- LIGNE IMPORTANTE ---
+// Logs en développement uniquement
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
+
+// --- Fichiers Statiques ---
+// Frontend (HTML/CSS/JS)
 app.use(express.static(path.join(__dirname, '../client/public')));
+// Uploads (Images)
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// Configuration des routes
+// --- Routes API ---
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/admin', checkAdmin, adminRoutes);
 
+// --- Fallback (pour renvoyer l'index.html si aucune route ne matche) ---
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+});
+
+// --- Démarrage ---
 app.listen(port, () => {
-  console.log(`✅ Serveur démarré et à l'écoute sur http://localhost:${port}`);
+  console.log(`🚀 Serveur démarré sur le port ${port}`);
 });
